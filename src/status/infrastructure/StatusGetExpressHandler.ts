@@ -1,8 +1,9 @@
 import { inject, injectable } from 'inversify';
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import { GetStatus } from '@status/application/GetStatus';
 import { HttpExpressHandler } from '@core/infrastructure/httpServers/HttpExpressHandler';
 import { HTTP_STATUS_CODE } from '@core/types/HttpStatusCode';
+import { ExtendedRequest } from '@core/infrastructure/httpServers/ExpressRequest';
 
 @injectable()
 export class StatusGetExpressHandler extends HttpExpressHandler {
@@ -14,7 +15,7 @@ export class StatusGetExpressHandler extends HttpExpressHandler {
     this.getStatus = getStatus;
   }
 
-  public async run (req: Request, res: Response): Promise<void> {
+  public async run (req: ExtendedRequest, res: Response): Promise<void> {
     const status = await this.getStatus.run();
     res.status(HTTP_STATUS_CODE.OK).send(status);
   }

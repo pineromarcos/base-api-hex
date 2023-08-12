@@ -10,6 +10,9 @@ import { MongooseClientFactory } from '@core/infrastructure/dataSources/Mongoose
 import { HttpLifeCycleManager } from '@status/infrastructure/HttpLifeCycleManager';
 import { GetStatus } from '@status/application/GetStatus';
 import { StatusGetExpressHandler } from '@status/infrastructure/StatusGetExpressHandler';
+import { AuthorizationExpressHandler } from '@core/infrastructure/AuthorizationExpressHandler';
+import { TOKEN_VERIFIER, TokenVerifier } from '@core/domain/TokenVerifier';
+import { TokenVerifierJWT } from '@core/infrastructure/TokenVerifierJWT';
 
 const dependencyContainer: Container = new Container();
 
@@ -22,5 +25,8 @@ dependencyContainer.bind<MongooseClientFactory>(MongooseClientFactory).toSelf().
 
 dependencyContainer.bind<GetStatus>(GetStatus).toSelf();
 dependencyContainer.bind<StatusGetExpressHandler>(StatusGetExpressHandler).toSelf();
+
+dependencyContainer.bind<TokenVerifier>(TOKEN_VERIFIER).to(TokenVerifierJWT);
+dependencyContainer.bind<AuthorizationExpressHandler>(AuthorizationExpressHandler).to(AuthorizationExpressHandler);
 
 export { dependencyContainer };

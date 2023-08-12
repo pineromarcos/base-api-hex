@@ -5,5 +5,6 @@ import { StatusGetExpressHandler } from '@status/infrastructure/StatusGetExpress
 
 export const register = async (router: HttpExpressRouter): Promise<void> => {
   const statusGetExpressHandler = dependencyContainer.get<StatusGetExpressHandler>(StatusGetExpressHandler);
+
   await router.add(HTTP_METHOD.GET, '/v1/status', statusGetExpressHandler);
 };

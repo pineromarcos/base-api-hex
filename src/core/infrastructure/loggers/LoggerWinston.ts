@@ -4,7 +4,6 @@ import { inject, injectable } from 'inversify';
 import { createLogger, format, Logger as WinstonLogger, transports } from 'winston';
 import { Format } from 'logform';
 import os from 'os';
-import { BaseError } from '../../domain/errors/BaseError';
 
 @injectable()
 export class LoggerWinston implements Logger {
@@ -38,7 +37,7 @@ export class LoggerWinston implements Logger {
     this.logger.warn(message);
   }
 
-  public error (error: BaseError): void {
+  public error (error: Error): void {
     this.logger.error({
       message: error.message,
       name: error.name,

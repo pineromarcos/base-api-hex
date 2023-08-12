@@ -20,7 +20,8 @@
     "postbuild",
     "rushstack",
     "tailwindcss",
-    "tscbuild"
+    "tscbuild",
+    "encrypter"
   ],
   "thunder-client.saveToWorkspace": true
 }

@@ -1,4 +1,5 @@
-export interface BaseProcessEnv {
+declare namespace NodeJS {
+  export interface ProcessEnv {
     SERVICE_NAME: string;
     SERVICE_VERSION: string;
     DEBUG: string;
@@ -12,7 +13,6 @@ export interface BaseProcessEnv {
     DATABASE_NAME: string;
     DATABASE_PARAMS: string;
     BODY_SIZE_LIMIT: string;
+    TOKEN_SECRET_KEY: string;
   }
-declare namespace NodeJS {
-  BaseProcessEnv;
 }

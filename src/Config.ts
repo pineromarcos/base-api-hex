@@ -54,4 +54,10 @@ export class Config {
     return process.env.DATABASE_PARAMS as string;
   }
 
+  public getTokenSecretKey (): string {
+    const base64key = process.env.TOKEN_SECRET_KEY as string;
+
+    return Buffer.from(base64key, 'base64').toString('utf-8');
+  }
+
 }
